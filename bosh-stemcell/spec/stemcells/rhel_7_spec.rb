@@ -3,6 +3,7 @@ require 'spec_helper'
 describe 'RHEL 7 stemcell', stemcell_image: true do
 
   it_behaves_like 'All Stemcells'
+  it_behaves_like 'a stemcell without systemd timers'
   it_behaves_like 'a CentOS 7 or RHEL 7 stemcell'
   it_behaves_like 'udf module is disabled'
 
