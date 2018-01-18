@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.2" name="Leap-42.1">
+<image schemaversion="6.2" name="Leap-42.3">
     <description type="system">
         <author>SUSE LINUX GmbH</author>
         <contact></contact>
         <specification>
-            Leap 42.2 minimal pattern based system
+            Leap 42.3 based system
         </specification>
     </description>
     <preferences>
         <!-- we need a type, just a tar is enough -->
         <type image="tbz"/>
-        <version>1.42.2</version>
+        <version>1.42.3</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_US</locale>
         <keytable>us.map.gz</keytable>
@@ -24,10 +24,10 @@
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root"/>
     </users>
     <repository type="yast2" imageinclude="true" priority="1000">
-        <source path="http://download.opensuse.org/distribution/leap/42.2/repo/oss/"/>
+        <source path="http://download.opensuse.org/distribution/leap/42.3/repo/oss/"/>
     </repository>
     <repository type="rpm-md" imageinclude="true">
-      <source path="http://download.opensuse.org/repositories/Cloud:/Platform:/SUSE-Stemcell/openSUSE_Leap_42.2/"/>
+      <source path="http://download.opensuse.org/repositories/Cloud:/Platform:/SUSE-Stemcell/openSUSE_Leap_42.3/"/>
     </repository>
     <packages type="image">
         <namedCollection name="base"/>

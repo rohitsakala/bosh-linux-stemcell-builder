@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe 'Ubuntu 16.04 stemcell image', stemcell_image: true do
   it_behaves_like 'All Stemcells'
+  it_behaves_like 'a stemcell without systemd timers'
 
   context 'installed by image_install_grub', {exclude_on_ppc64le: true} do
     describe file('/boot/grub/grub.conf') do

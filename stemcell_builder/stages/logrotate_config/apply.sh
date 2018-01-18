@@ -15,11 +15,18 @@ elif [ "$(get_os_type)" == "ubuntu" ]; then
   echo "7e52df7373b42a36b2bdde9bc88315e828cdc61e  $chroot/etc/logrotate.conf" | sha1sum -c
   cp $assets_dir/ubuntu-logrotate.conf $chroot/etc/logrotate.conf
 elif [ "$(get_os_type)" == "opensuse" ]; then
-  echo "47755bc41e67be920d97a2ba027a2263274ed69f  $chroot/etc/logrotate.conf" | sha1sum -c
+  echo "776b88d6405b814a2bb58ac50e5a80040bfdbde1  $chroot/etc/logrotate.conf" | sha1sum -c
   cp $assets_dir/opensuse-logrotate.conf $chroot/etc/logrotate.conf
 fi
 
-mv $chroot/etc/cron.daily/logrotate $chroot/usr/bin/logrotate-cron
-echo '0,15,30,45 * * * * root /usr/bin/logrotate-cron' > $chroot/etc/cron.d/logrotate
+if [ "$(get_os_type)" == "opensuse" ]; then
+  sed 's/OnCalendar=.*/OnCalendar=*:0\/15/; /^Accuracy.*/d' \
+    $chroot/usr/lib/systemd/system/logrotate.timer > $chroot/etc/systemd/system/logrotate.timer
+  run_in_chroot $chroot "systemctl reenable logrotate.timer"
+
+else
+  mv $chroot/etc/cron.daily/logrotate $chroot/usr/bin/logrotate-cron
+  echo '0,15,30,45 * * * * root /usr/bin/logrotate-cron' > $chroot/etc/cron.d/logrotate
+fi
 
 cp -f $assets_dir/default_su_directive $chroot/etc/logrotate.d/default_su_directive

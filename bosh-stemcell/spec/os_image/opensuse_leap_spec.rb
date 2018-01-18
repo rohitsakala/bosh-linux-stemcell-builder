@@ -170,7 +170,7 @@ root:x:0:0:root:/root:/bin/bash
 rpc:x:[1-9][0-9]*:[1-9][0-9]*:user for rpcbind:/var/lib/empty:/sbin/nologin
 sshd:x:[1-9][0-9]*:[1-9][0-9]*:SSH daemon:/var/lib/sshd:/bin/false
 syslog:x:[1-9][0-9]*:[1-9][0-9]*::/home/syslog:/bin/false
-systemd-bus-proxy:x:[1-9][0-9]*:[1-9][0-9]*:systemd Bus Proxy:/:/sbin/nologin
+systemd-network:x:[1-9][0-9]*:[1-9][0-9]*:systemd Network Management:/:/sbin/nologin
 systemd-timesync:x:[1-9][0-9]*:[1-9][0-9]*:systemd Time Synchronization:/:/sbin/nologin
 uucp:x:[1-9][0-9]*:[1-9][0-9]*:Unix-to-Unix CoPy system:/etc/uucp:/bin/false
 vcap:x:[1-9][0-9]*:[1-9][0-9]*:BOSH System User:/home/vcap:/bin/bash
@@ -200,7 +200,7 @@ root:.+:\d{5}::::::
 rpc:!:\d{5}::::::
 sshd:!:\d{5}::::::
 syslog:!:\d{5}::::::
-systemd-bus-proxy:!!:\d{5}::::::
+systemd-network:!!:\d{5}::::::
 systemd-timesync:!!:\d{5}::::::
 uucp:\*:\d{5}::::::
 vcap:.+:\d{5}:1:99999:7:::
@@ -251,8 +251,8 @@ shadow:x:[1-9][0-9]*:
 sshd:x:[1-9][0-9]*:
 sys:x:[1-9][0-9]*:
 syslog:!:[1-9][0-9]*:
-systemd-bus-proxy:x:[1-9][0-9]*:
 systemd-journal:x:[1-9][0-9]*:
+systemd-network:x:[1-9][0-9]*:
 systemd-timesync:x:[1-9][0-9]*:
 tape:x:[1-9][0-9]*:
 trusted:x:[1-9][0-9]*:
