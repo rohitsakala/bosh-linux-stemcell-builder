@@ -11,7 +11,13 @@ if [ ${DISTRIB_CODENAME} == 'xenial' ]; then
   echo -e "\n# Steps the system time at boot if off by more than 3 seconds" >> $chroot/etc/chrony/chrony.conf
   echo -e "makestep 3 1" >> $chroot/etc/chrony/chrony.conf
   cp $chroot/etc/chrony/chrony.conf{,.base}
-  cp $dir/assets/chrony-updater $chroot/$bosh_dir/bin/sync-time
+  cp $dir/assets/chrony-updater-ubuntu $chroot/$bosh_dir/bin/sync-time
+elif [ "$(get_os_type)" == "opensuse" ]; then
+  sed -i "/^pool /d" $chroot/etc/chrony.conf
+  echo -e "\n# Steps the system time at boot if off by more than 3 seconds" >> $chroot/etc/chrony.conf
+  echo -e "makestep 3 1" >> $chroot/etc/chrony.conf
+  cp $chroot/etc/chrony.conf{,.base}
+  cp $dir/assets/chrony-updater-opensuse $chroot/$bosh_dir/bin/sync-time
 else
   # setup crontab to update ntpdate with new ntp servers as provided by agent
   cp $dir/assets/ntpdate $chroot/$bosh_dir/bin/sync-time

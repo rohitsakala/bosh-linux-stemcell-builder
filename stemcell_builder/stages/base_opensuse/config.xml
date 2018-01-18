@@ -42,6 +42,7 @@
         <package name="bison"/>
         <package name="make"/>
         <package name="check-devel"/>
+        <package name="chrony"/>
         <package name="cronie"/>
         <package name="cronie-anacron"/>
         <package name="sudo"/>
