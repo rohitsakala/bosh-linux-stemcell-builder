@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe 'openSUSE leap OS image', os_image: true do
   it_behaves_like 'every OS image'
-  it_behaves_like 'a openSUSE based OS image'
   it_behaves_like 'a systemd-based OS image'
+  it_behaves_like 'a openSUSE based OS image'
   it_behaves_like 'a Linux kernel 3.x based OS image'
   it_behaves_like 'a Linux kernel module configured OS image'
 
@@ -152,28 +152,30 @@ describe 'openSUSE leap OS image', os_image: true do
     describe file('/etc/passwd') do
       it "only has login shells for root and vcap" do
         passwd_match = Regexp.new <<'END_PASSWD', [Regexp::MULTILINE]
-bin:x:[1-9][0-9]*:[1-9][0-9]*+:bin:/bin:/bin/false
-daemon:x:[1-9][0-9]*:[1-9][0-9]*+:Daemon:/sbin:/bin/false
-ftp:x:[1-9][0-9]*:[1-9][0-9]*+:FTP account:/srv/ftp:/bin/false
-games:x:[1-9][0-9]*:[1-9][0-9]*+:Games account:/var/games:/bin/false
-lp:x:[1-9][0-9]*:[1-9][0-9]*+:Printing daemon:/var/spool/lpd:/bin/false
-mail:x:[1-9][0-9]*:[1-9][0-9]*+:Mailer daemon:/var/spool/clientmqueue:/bin/false
-man:x:[1-9][0-9]*:[1-9][0-9]*+:Manual pages viewer:/var/cache/man:/bin/false
-messagebus:x:[1-9][0-9]*:[1-9][0-9]*+:User for D-Bus:/run/dbus:/bin/false
-news:x:[1-9][0-9]*:[1-9][0-9]*+:News system:/etc/news:/bin/false
-nobody:x:[1-9][0-9]*:[1-9][0-9]*+:nobody:/var/lib/nobody:/bin/false
-ntp:x:[1-9][0-9]*:[1-9][0-9]*+:NTP daemon:/var/lib/ntp:/bin/false
-pesign:x:[1-9][0-9]*:[1-9][0-9]*+:PE-COFF signing daemon:/var/lib/pesign:/bin/false
-polkitd:x:[1-9][0-9]*:[1-9][0-9]*+:User for polkitd:/var/lib/polkit:/sbin/nologin
+bin:x:[1-9][0-9]*:[1-9][0-9]*:bin:/bin:/bin/false
+chrony:x:[1-9][0-9]*:[1-9][0-9]*:Chrony Daemon:/var/lib/chrony:/bin/false
+daemon:x:[1-9][0-9]*:[1-9][0-9]*:Daemon:/sbin:/bin/false
+ftp:x:[1-9][0-9]*:[1-9][0-9]*:FTP account:/srv/ftp:/bin/false
+games:x:[1-9][0-9]*:[1-9][0-9]*:Games account:/var/games:/bin/false
+lp:x:[1-9][0-9]*:[1-9][0-9]*:Printing daemon:/var/spool/lpd:/bin/false
+mail:x:[1-9][0-9]*:[1-9][0-9]*:Mailer daemon:/var/spool/clientmqueue:/bin/false
+man:x:[1-9][0-9]*:[1-9][0-9]*:Manual pages viewer:/var/cache/man:/bin/false
+messagebus:x:[1-9][0-9]*:[1-9][0-9]*:User for D-Bus:/run/dbus:/bin/false
+news:x:[1-9][0-9]*:[1-9][0-9]*:News system:/etc/news:/bin/false
+nobody:x:[1-9][0-9]*:[1-9][0-9]*:nobody:/var/lib/nobody:/bin/false
+ntp:x:[1-9][0-9]*:[1-9][0-9]*:NTP daemon:/var/lib/ntp:/bin/false
+pesign:x:[1-9][0-9]*:[1-9][0-9]*:PE-COFF signing daemon:/var/lib/pesign:/bin/false
+polkitd:x:[1-9][0-9]*:[1-9][0-9]*:User for polkitd:/var/lib/polkit:/sbin/nologin
 root:x:0:0:root:/root:/bin/bash
-rpc:x:[1-9][0-9]*:[1-9][0-9]*+:user for rpcbind:/var/lib/empty:/sbin/nologin
-sshd:x:[1-9][0-9]*:[1-9][0-9]*+:SSH daemon:/var/lib/sshd:/bin/false
-syslog:x:[1-9][0-9]*:[1-9][0-9]*+::/home/syslog:/bin/false
-systemd-bus-proxy:x:[1-9][0-9]*:[1-9][0-9]*+:systemd Bus Proxy:/:/sbin/nologin
-systemd-timesync:x:[1-9][0-9]*:[1-9][0-9]*+:systemd Time Synchronization:/:/sbin/nologin
-uucp:x:[1-9][0-9]*:[1-9][0-9]*+:Unix-to-Unix CoPy system:/etc/uucp:/bin/false
-vcap:x:[1-9][0-9]*:[1-9][0-9]*+:BOSH System User:/home/vcap:/bin/bash
-wwwrun:x:[1-9][0-9]*:[1-9][0-9]*+:WWW daemon apache:/var/lib/wwwrun:/bin/false
+rpc:x:[1-9][0-9]*:[1-9][0-9]*:user for rpcbind:/var/lib/empty:/sbin/nologin
+sshd:x:[1-9][0-9]*:[1-9][0-9]*:SSH daemon:/var/lib/sshd:/bin/false
+syslog:x:[1-9][0-9]*:[1-9][0-9]*::/home/syslog:/bin/false
+systemd-network:x:[1-9][0-9]*:[1-9][0-9]*:systemd Network Management:/:/sbin/nologin
+systemd-bus-proxy:x:[1-9][0-9]*:[1-9][0-9]*:systemd Bus Proxy:/:/sbin/nologin
+systemd-timesync:x:[1-9][0-9]*:[1-9][0-9]*:systemd Time Synchronization:/:/sbin/nologin
+uucp:x:[1-9][0-9]*:[1-9][0-9]*:Unix-to-Unix CoPy system:/etc/uucp:/bin/false
+vcap:x:[1-9][0-9]*:[1-9][0-9]*:BOSH System User:/home/vcap:/bin/bash
+wwwrun:x:[1-9][0-9]*:[1-9][0-9]*:WWW daemon apache:/var/lib/wwwrun:/bin/false
 END_PASSWD
         expect(subject.content.lines.sort.join).to match(passwd_match)
       end
@@ -182,6 +184,7 @@ END_PASSWD
     describe file('/etc/shadow') do
       shadow_match = Regexp.new <<'END_SHADOW', [Regexp::MULTILINE]
 \Abin:\*:\d{5}::::::
+chrony:!:\d{5}::::::
 daemon:\*:\d{5}::::::
 ftp:\*:\d{5}::::::
 games:\*:\d{5}::::::
@@ -198,15 +201,15 @@ root:.+:\d{5}::::::
 rpc:!:\d{5}::::::
 sshd:!:\d{5}::::::
 syslog:!:\d{5}::::::
-systemd-bus-proxy:!!:\d{5}::::::
+systemd-network:!!:\d{5}::::::
 systemd-timesync:!!:\d{5}::::::
 uucp:\*:\d{5}::::::
 vcap:.+:\d{5}:1:99999:7:::
 wwwrun:\*:\d{5}::::::\Z
 END_SHADOW
 
-      it "does not contain any password" do 
-        expect(subject.content.lines.sort.join).to match(shadow_match) 
+      it "does not contain any password" do
+        expect(subject.content.lines.sort.join).to match(shadow_match)
       end
     end
 
@@ -220,6 +223,7 @@ bin:x:[1-9][0-9]*:daemon
 bosh_sshers:x:[1-9][0-9]*:vcap
 bosh_sudoers:x:[1-9][0-9]*:
 cdrom:x:[1-9][0-9]*:vcap
+chrony:x:[1-9][0-9]*:
 console:x:[1-9][0-9]*:
 daemon:x:[1-9][0-9]*:
 dialout:x:[1-9][0-9]*:vcap
@@ -269,12 +273,16 @@ END_GROUP
 
     describe file('/etc/gshadow') do
       it "does not contain any passwords" do
-         expected = <<HERE.lines
-systemd-timesync:!!::
-systemd-bus-proxy:!!::
-systemd-journal:!!::
-HERE
+        expected = []
         expect(subject.content.lines).to match_array(expected)
+      end
+    end
+  end
+
+  context 'enabled services' do
+    describe command('systemctl is-enabled chronyd.service') do
+      it 'keeps the system clock up to date (stig: V-38620 V-38621)' do
+        expect(subject.stdout).to include 'enabled'
       end
     end
   end

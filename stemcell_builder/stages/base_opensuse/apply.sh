@@ -29,6 +29,7 @@ zypper -n rr update
 groupadd adm
 groupadd dip
 systemctl enable runit || true # TODO figure out why enable always returns non-zero exit code
+systemctl enable chronyd || true
 
 # Losen pam_limits limits for the vcap user
 # That is necessary for properly running the mysql server, for example
