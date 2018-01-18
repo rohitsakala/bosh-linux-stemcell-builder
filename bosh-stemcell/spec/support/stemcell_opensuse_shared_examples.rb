@@ -165,4 +165,16 @@ shared_examples_for 'a openSUSE stemcell' do
       its(:content) { should match('"Type": "HTTP"') }
     end
   end
+
+  context 'systemd services' do
+    describe 'logrotate' do
+      describe 'should rotate every 15 minutes' do
+        describe file('/etc/systemd/system/logrotate.timer') do
+          it 'lists the schedule precisely' do
+            expect(subject.content).to match(/^OnCalendar=\*:0\/15$/)
+          end
+        end
+      end
+    end
+  end
 end
