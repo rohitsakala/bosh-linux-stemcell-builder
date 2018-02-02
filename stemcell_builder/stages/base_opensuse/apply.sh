@@ -21,11 +21,6 @@ run_in_chroot $chroot "
 sed -i 's/# installRecommends = yes/installRecommends = no/' /etc/zypp/zypper.conf
 zypper --gpg-auto-import-keys ref
 
-# systemd bug: https://bugzilla.suse.com/show_bug.cgi?id=1012818
-zypper ar http://download.opensuse.org/update/leap/42.2/oss/ update
-zypper -n --gpg-auto-import-keys in --from update systemd
-zypper -n rr update
-
 groupadd adm
 groupadd dip
 systemctl enable runit || true # TODO figure out why enable always returns non-zero exit code
