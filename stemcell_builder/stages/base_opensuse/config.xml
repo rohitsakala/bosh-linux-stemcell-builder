@@ -5,7 +5,7 @@
         <author>SUSE LINUX GmbH</author>
         <contact></contact>
         <specification>
-            Leap 42.2 minimal pattern based system
+            Leap 42.3 based system
         </specification>
     </description>
     <preferences>
@@ -27,7 +27,7 @@
         <source path="http://download.opensuse.org/distribution/leap/42.3/repo/oss/"/>
     </repository>
     <repository type="rpm-md" imageinclude="true">
-      <source path="http://download.opensuse.org/repositories/Cloud:/Platform:/SUSE-Stemcell/openSUSE_Leap_42.2/"/>
+      <source path="http://download.opensuse.org/repositories/Cloud:/Platform:/SUSE-Stemcell/openSUSE_Leap_42.3/"/>
     </repository>
     <packages type="image">
         <namedCollection name="base"/>

@@ -171,7 +171,6 @@ rpc:x:[1-9][0-9]*:[1-9][0-9]*:user for rpcbind:/var/lib/empty:/sbin/nologin
 sshd:x:[1-9][0-9]*:[1-9][0-9]*:SSH daemon:/var/lib/sshd:/bin/false
 syslog:x:[1-9][0-9]*:[1-9][0-9]*::/home/syslog:/bin/false
 systemd-network:x:[1-9][0-9]*:[1-9][0-9]*:systemd Network Management:/:/sbin/nologin
-systemd-bus-proxy:x:[1-9][0-9]*:[1-9][0-9]*:systemd Bus Proxy:/:/sbin/nologin
 systemd-timesync:x:[1-9][0-9]*:[1-9][0-9]*:systemd Time Synchronization:/:/sbin/nologin
 uucp:x:[1-9][0-9]*:[1-9][0-9]*:Unix-to-Unix CoPy system:/etc/uucp:/bin/false
 vcap:x:[1-9][0-9]*:[1-9][0-9]*:BOSH System User:/home/vcap:/bin/bash
@@ -252,8 +251,8 @@ shadow:x:[1-9][0-9]*:
 sshd:x:[1-9][0-9]*:
 sys:x:[1-9][0-9]*:
 syslog:!:[1-9][0-9]*:
-systemd-bus-proxy:x:[1-9][0-9]*:
 systemd-journal:x:[1-9][0-9]*:
+systemd-network:x:[1-9][0-9]*:
 systemd-timesync:x:[1-9][0-9]*:
 tape:x:[1-9][0-9]*:
 trusted:x:[1-9][0-9]*:

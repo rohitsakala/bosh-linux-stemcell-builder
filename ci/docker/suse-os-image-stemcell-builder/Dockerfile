@@ -1,17 +1,10 @@
-FROM opensuse:42.2
+FROM opensuse:42.3
 
 ENV GOROOT /usr/local/go
 ENV PATH $GOROOT/bin:$PATH
 RUN echo 'export PATH=$GOROOT/bin:$PATH' >> /etc/profile.d/go.sh
 
-RUN zypper -n ar http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_42.2/ kiwi
-RUN zypper --gpg-auto-import-keys ref
-RUN zypper -n in -t pattern devel_C_C++
-RUN zypper -n in ruby-devel libmysqld-devel sqlite3-devel postgresql-devel libxslt-devel libxml2-devel libxml2 python3-kiwi wget sudo gcc-c++ curl git
-RUN zypper -n in --force-resolution libopenssl-devel # RVM requirement
-
-# Temporarily downgrade kpartx until http://bugzilla.suse.com/show_bug.cgi?id=1037533 was resolved
-RUN zypper -n in --oldpackage kpartx=0.6.2+suse20161025.b80f406-1.1
+RUN zypper -n in ruby-devel libmysqld-devel sqlite3-devel postgresql-devel libxslt-devel libxml2-devel libxml2 python3-kiwi wget sudo gcc-c++ curl git kpartx dracut libopenssl-devel which
 
 ENV OVF_TOOL_INSTALLER VMware-ovftool-4.1.0-2459827-lin.x86_64.bundle
 ENV OVF_TOOL_INSTALLER_SHA1 b907275c8d744bb54717d24bb8d414b19684fed4
