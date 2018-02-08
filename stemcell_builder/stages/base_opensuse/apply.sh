@@ -60,16 +60,7 @@ run_in_chroot $chroot "
   echo "nf_conntrack" > /etc/modules-load.d/conntrack.conf
 "
 
-# Setting locale
-case "${stemcell_operating_system_version}" in
-  "leap")
-    locale_file=/etc/locale.conf
-    ;;
-  *)
-    echo "Unknown openSUSE release: ${stemcell_operating_system_version}"
-    exit 1
-    ;;
-esac
+locale_file=/etc/locale.conf
 
 echo "LANG=\"en_US.UTF-8\"" >> ${chroot}/${locale_file}
 
