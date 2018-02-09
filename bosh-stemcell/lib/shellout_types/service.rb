@@ -29,7 +29,7 @@ module ShelloutTypes
 
       if stdout.match(/Ubuntu/) && !stdout.match(/Xenial/)
         check_upstart_links(runlevel) || check_init_conf(runlevel)
-      elsif stdout.match /CentOS|openSUSE|Xenial/
+      elsif stdout.match /CentOS|openSUSE|Xenial|SLES/
         check_is_enabled_systemctl
       else
         raise "Cannot determine Linux distribution: #{stdout}"

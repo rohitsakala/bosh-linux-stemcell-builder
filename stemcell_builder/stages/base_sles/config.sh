@@ -1,0 +1,1 @@
+../base_opensuse/config.sh
