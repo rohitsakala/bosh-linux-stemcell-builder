@@ -103,5 +103,6 @@
         <package name="rsync"/>
         <package name="lsof"/>
         <package name="libnfs8"/>
+        <package name="gettext-tools"/>
     </packages>
 </image>
