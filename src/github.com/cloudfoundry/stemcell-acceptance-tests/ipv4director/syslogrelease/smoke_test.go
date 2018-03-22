@@ -11,7 +11,7 @@ import (
 var _ = Describe("Syslogrelease", func() {
 	Context("when auditd is monitoring access to modprobe", func() {
 		It("gets forwarded to the syslog storer", func() {
-			_, _, exitStatus, err := bosh.Run("ssh", "syslog_forwarder/0", "sudo modprobe -r floppy")
+			_, _, exitStatus, err := bosh.Run("ssh", "syslog_forwarder/0", "sudo -i modprobe -r floppy")
 			Expect(err).ToNot(HaveOccurred())
 			Expect(exitStatus).To(Equal(0))
 
