@@ -55,7 +55,7 @@
         <package name="less"/>
         <package name="audit"/>
         <package name="shadow"/>
-        <package name="runit"/>
+        <!--<package name="runit"/> -->
         <!-- packages required to build the stemcell -->
         <package name="zlib-devel"/>
         <package name="netcat-openbsd"/>
@@ -96,8 +96,8 @@
         <package name="zip"/>
         <package name="gptfdisk"/>
         <package name="xen-kmp-default"/>
-        <package name="xen-libs"/>
-        <package name="xen-tools-domU"/>
+        <!-- <package name="xen-libs"/> -->
+        <!-- <package name="xen-tools-domU"/> -->
         <package name="rsync"/>
         <package name="lsof"/>
         <package name="libnfs8"/>
