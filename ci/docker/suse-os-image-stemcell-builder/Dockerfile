@@ -1,16 +1,20 @@
-FROM opensuse:42.3
+FROM opensuse/tumbleweed
+
+RUN zypper --non-interactive in --oldpackage product:openSUSE-20170505-0.s390x
+RUN zypper --non-interactive in --force rpm zypper libsolv-tools libzypp libpopt0
+RUN cp /usr/lib64/liblua5.3.so.5.3.0 .
+RUN rpm -e --nodeps liblua5_3-5
+RUN cp liblua5.3.so.5.3.0 /usr/lib64/liblua5.3.so.5
+RUN cp liblua5.3.so.5.3.0 /usr/lib64/liblua.so.5.3
+RUN zypper --non-interactive in liblua5_3
+RUN zypper --non-interactive dup --download as-needed
+RUN rm liblua5.3.so.5.3.0
 
 ENV GOROOT /usr/local/go
 ENV PATH $GOROOT/bin:$PATH
 RUN echo 'export PATH=$GOROOT/bin:$PATH' >> /etc/profile.d/go.sh
 
 RUN zypper -n in ruby-devel libmysqld-devel sqlite3-devel postgresql-devel libxslt-devel libxml2-devel libxml2 python3-kiwi wget sudo gcc-c++ curl git kpartx dracut libopenssl-devel which
-
-ENV OVF_TOOL_INSTALLER VMware-ovftool-4.1.0-2459827-lin.x86_64.bundle
-ENV OVF_TOOL_INSTALLER_SHA1 b907275c8d744bb54717d24bb8d414b19684fed4
-ADD ${OVF_TOOL_INSTALLER} /tmp/ovftool_installer.bundle
-ADD scripts/install-ovf.sh /tmp/install-ovf.sh
-RUN /tmp/install-ovf.sh && rm /tmp/install-ovf.sh
 
 RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 RUN curl -sSL https://get.rvm.io | bash -s stable --ruby=2.3.1
