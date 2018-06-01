@@ -78,7 +78,7 @@ if ! is_ppc64le; then
     run_in_chroot ${image_mount_point} "grub2-install -v --no-floppy --grub-mkdevicemap=/device.map --target=i386-pc ${device}"
 
     # Enable password-less booting in openSUSE, only editing the boot menu needs to be restricted
-    if [ -f ${image_mount_point}/etc/SuSE-release ]; then
+    if [ -f ${image_mount_point}/etc/os-release ]; then
       run_in_chroot ${image_mount_point} "sed -i 's/CLASS=\\\"--class gnu-linux --class gnu --class os\\\"/CLASS=\\\"--class gnu-linux --class gnu --class os --unrestricted\\\"/' /etc/grub.d/10_linux"
 
       cat >${image_mount_point}/etc/default/grub <<EOF
@@ -190,10 +190,10 @@ then
 # /etc/fstab Created by BOSH Stemcell Builder
 UUID=${uuid} / ext4 defaults 1 1
 FSTAB
-elif [ -f ${image_mount_point}/etc/SuSE-release ] # openSUSE
+elif [ -f ${image_mount_point}/etc/os-release ] # openSUSE
 then
   initrd_file="initramfs-${kernel_version}.img"
-  os_name=$(cat ${image_mount_point}/etc/SuSE-release)
+  os_name=$(cat ${image_mount_point}/etc/os-release)
   cat > ${image_mount_point}/etc/fstab <<FSTAB
 # /etc/fstab Created by BOSH Stemcell Builder
 UUID=${uuid} / ext4 defaults 1 1
@@ -245,7 +245,7 @@ title ${os_name} (${kernel_version})
   initrd /boot/${initrd_file}
 GRUB_CONF
 
-elif [ -f ${image_mount_point}/etc/SuSE-release ] # openSUSE
+elif [ -f ${image_mount_point}/etc/os-release ] # openSUSE
 then
   cat > ${image_mount_point}/boot/grub/grub.conf <<GRUB_CONF
 default=0

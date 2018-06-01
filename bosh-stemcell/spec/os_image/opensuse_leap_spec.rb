@@ -8,7 +8,7 @@ describe 'openSUSE leap OS image', os_image: true do
   it_behaves_like 'a Linux kernel module configured OS image'
 
   context 'installed by base_opensuse' do
-    describe file('/etc/SuSE-release') do
+    describe file('/etc/os-release') do
       it { should be_file }
     end
 

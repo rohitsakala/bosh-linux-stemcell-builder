@@ -13,7 +13,7 @@ shared_examples_for 'a openSUSE based OS image' do
   end
 
   context 'installed by base_opensuse' do
-    describe file('/etc/SuSE-release') do
+    describe file('/etc/os-release') do
       it { should be_file }
     end
 

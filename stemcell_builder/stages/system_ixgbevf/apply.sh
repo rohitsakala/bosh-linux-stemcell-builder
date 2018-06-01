@@ -42,7 +42,7 @@ then
 elif [ -f ${chroot}/etc/photon-release ] # PhotonOS
 then
   run_in_chroot $chroot "dracut --force --kver ${kernelver}"
-elif [ -f ${chroot}/etc/SuSE-release ] # openSUSE
+elif [ -f ${chroot}/etc/os-release ] # openSUSE
 then
   run_in_chroot $chroot "dracut --force --kver ${kernelver}"
 else
