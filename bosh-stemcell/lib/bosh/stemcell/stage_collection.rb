@@ -302,7 +302,7 @@ module Bosh::Stemcell
         :restrict_su_command,
         :tty_config,
         :rsyslog_config,
-        :delay_monit_start,
+        #:delay_monit_start,
         :system_grub,
         :cron_config,
         :escape_ctrl_alt_del,

@@ -12,6 +12,7 @@ elif [ "$(get_os_type)" == "ubuntu" ]; then
 fi
 # restrict Access to the su Command add the following line to the /etc/pam.d/su file.
 # auth required pam_wheel.so use_uid add vcap user to 'root' group
+run_in_chroot $chroot "groupadd -f wheel"
 run_in_chroot $chroot "
   sudo echo 'auth required pam_wheel.so use_uid' >> /etc/pam.d/su
   sudo usermod -aG ${sudoers_group} vcap
