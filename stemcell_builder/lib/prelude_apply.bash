@@ -24,7 +24,7 @@ function get_os_type {
   rhel_file=$chroot/etc/redhat-release
   ubuntu_file=$chroot/etc/lsb-release
   photonos_file=$chroot/etc/photon-release
-  opensuse_file=$chroot/etc/SuSE-release
+  opensuse_file=$chroot/etc/os-release
 
   os_type=''
   if [ -f $photonos_file ]
