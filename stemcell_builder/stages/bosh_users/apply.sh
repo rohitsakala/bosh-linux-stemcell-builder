@@ -19,8 +19,12 @@ then
 fi
 
 run_in_chroot $chroot "
-groupadd --system admin
+groupadd --system -f admin
 groupadd -f vcap
+groupadd audio
+groupadd cdrom
+groupadd floppy
+groupadd video
 useradd -m --comment 'BOSH System User' vcap --uid 1000 -g vcap
 chmod 700 ~vcap
 echo \"vcap:${bosh_users_password}\" | chpasswd
